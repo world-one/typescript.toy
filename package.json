@@ -1,0 +1,14 @@
+{
+  "name": "typescript.toy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/world-one/typescript.toy",
+  "author": "world-one",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^4.3.5"
+  },
+  "scripts": {
+    "toJs": "tsc types/index.ts"
+  }
+}
