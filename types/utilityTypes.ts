@@ -68,12 +68,58 @@ const companyInfo3: Record<CompanyNames, string> = {
 };
 
 //Pick
+interface FruitsInfoTypes {
+  id: number;
+  name: string;
+  description: string;
+}
+
+type PickFruitsInfoTypes = Pick<FruitsInfoTypes, 'name'>;
+const fruitsNames: PickFruitsInfoTypes = {
+  name: 'watermelon',
+}
+
 //Omit
+type OmitFruitsInfoTypes = Omit<FruitsInfoTypes, 'id'>;
+const fruitsInfoWithoutId: OmitFruitsInfoTypes = {
+  name: 'watermelon',
+  description: 'many water',
+}
+
 //Exclude
+type FruitsNameTypes = 'orange' | 'apple' | 'banana' | 'watermelon' | 'dog';
+type ExcludeFruitsNameTypes = Exclude<FruitsNameTypes, 'dog'>;
+const excludeFruitsName: ExcludeFruitsNameTypes = 'apple';
+
 //Extract
+type ExtractFruitsNameTypes = Extract<ExcludeFruitsNameTypes, 'watermelon' | 'strawberry'>;
+const extractFruitsName: ExtractFruitsNameTypes = 'watermelon';
+
 //NonNullable
+type FruitNameTypes = NonNullable<string | null | undefined>;
+// ??????
+const fruitsName1: FruitNameTypes = null;
+const fruitsName2: FruitNameTypes = undefined;
+
 //Parameters
+function findFruitsByName({ name: string }) {
+  return 'watermelon';
+}
+
+type FindFruitsByNameParameterTypes = Parameters<typeof findFruitsByName>
+const fruitsNames2: FindFruitsByNameParameterTypes = [{
+  name: 'watermelon',
+}]
+
 //ConstructorParameters
+interface MessageTypes {
+  new(message: string): {
+    name: string;
+  } 
+}
+type ConstructorParametersTypes = ConstructorParameters<MessageTypes>;
+const what: ConstructorParametersTypes = ['hi']
+
 //ReturnType
 //InstanceType
 //ThisParameterType

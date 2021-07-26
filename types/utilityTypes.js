@@ -50,13 +50,27 @@ var companyInfo3 = {
     'facebook': companies[0].description,
     'apple': companies[0].description
 };
-//Pick
-//Omit
-//Exclude
-//Extract
-//NonNullable
+var fruitsNames = {
+    name: 'watermelon'
+};
+var fruitsInfoWithoutId = {
+    name: 'watermelon',
+    description: 'many water'
+};
+var excludeFruitsName = 'apple';
+var extractFruitsName = 'watermelon';
+// ??????
+var fruitsName1 = null;
+var fruitsName2 = undefined;
 //Parameters
-//ConstructorParameters
+function findFruitsByName(_a) {
+    var string = _a.name;
+    return 'watermelon';
+}
+var fruitsNames2 = [{
+        name: 'watermelon'
+    }];
+var what = ['hi'];
 //ReturnType
 //InstanceType
 //ThisParameterType
