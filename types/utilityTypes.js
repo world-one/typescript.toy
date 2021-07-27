@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 exports.__esModule = true;
 //Partial
 //Required
@@ -70,13 +81,45 @@ function findFruitsByName(_a) {
 var fruitsNames2 = [{
         name: 'watermelon'
     }];
-var what = ['hi'];
-//ReturnType
+var what = [[['hi', 'hello']]];
+var returnName = 'string';
 //InstanceType
+var InstanceClass = /** @class */ (function () {
+    function InstanceClass() {
+        this.name = 'world-one';
+        this.age = '18';
+    }
+    return InstanceClass;
+}());
+var what2 = new InstanceClass();
 //ThisParameterType
+function toHex() {
+    return this.toString(16);
+}
+function numberToString(n) {
+    return toHex.apply(n);
+}
 //OmitThisParameter
-//ThisType
-//Uppercase
-//Lowercase
-//Capitalize
-//Uncapitalize
+var fiveToHex = toHex.bind(5);
+function makeObject(desc) {
+    var data = desc.data || {};
+    var methods = desc.methods || {};
+    return __assign(__assign({}, data), methods);
+}
+var obj = makeObject({
+    data: { x: 0, y: 0 },
+    methods: {
+        moveBy: function (dx, dy) {
+            this.x += dx; // Strongly typed this
+            this.y += dy; // Strongly typed this
+        }
+    }
+});
+obj.x = 10;
+obj.y = 20;
+obj.moveBy(5, 5);
+//String 변환 해주는 것들
+//Uppercase<StringType>
+//Lowercase<StringType>
+//Capitalize<StringType>
+//Uncapitalize<StringType>
