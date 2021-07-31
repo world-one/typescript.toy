@@ -1,3 +1,4 @@
+import './css/common.css';
 import './css/style.css';
 
 const welcomeText = 'hello';
