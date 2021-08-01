@@ -70,16 +70,6 @@ eval("module.exports = __webpack_require__.p + \"19023c8360391f1fa8dc.woff2\";\n
 
 /***/ }),
 
-/***/ "./app/src/index.js":
-/*!**************************!*\
-  !*** ./app/src/index.js ***!
-  \**************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_common_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./css/common.css */ \"./app/src/css/common.css\");\n/* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./css/style.css */ \"./app/src/css/style.css\");\n\n\n\nconst welcomeText = 'hello';\n\nconst names = ['a', 'b', 'c'];\n\nnames.map((item) => {\n  console.log(item);\n});\n\nconst el = document.createElement('div');\n  el.innerHTML = welcomeText;\n\ndocument.body.appendChild(el);\n\n//# sourceURL=webpack://typescript.toy/./app/src/index.js?");
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/dist/cjs.js!./app/src/css/common.css":
 /*!**********************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./app/src/css/common.css ***!
@@ -197,6 +187,16 @@ eval("\n\n/* istanbul ignore next  */\nfunction apply(style, options, obj) {\n  
 /***/ ((module) => {
 
 eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, style) {\n  if (style.styleSheet) {\n    style.styleSheet.cssText = css;\n  } else {\n    while (style.firstChild) {\n      style.removeChild(style.firstChild);\n    }\n\n    style.appendChild(document.createTextNode(css));\n  }\n}\n\nmodule.exports = styleTagTransform;\n\n//# sourceURL=webpack://typescript.toy/./node_modules/style-loader/dist/runtime/styleTagTransform.js?");
+
+/***/ }),
+
+/***/ "./app/src/index.ts":
+/*!**************************!*\
+  !*** ./app/src/index.ts ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_common_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./css/common.css */ \"./app/src/css/common.css\");\n/* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./css/style.css */ \"./app/src/css/style.css\");\n\n\nvar welcomeText = 'hello';\nvar names = ['a', 'b', 'c'];\nnames.map(function (item) {\n    console.log(item);\n});\nvar el = document.createElement('div');\nel.innerHTML = welcomeText;\ndocument.body.appendChild(el);\n\n\n//# sourceURL=webpack://typescript.toy/./app/src/index.ts?");
 
 /***/ })
 
@@ -333,7 +333,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, style) {\
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./app/src/index.js");
+/******/ 	var __webpack_exports__ = __webpack_require__("./app/src/index.ts");
 /******/ 	
 /******/ })()
 ;

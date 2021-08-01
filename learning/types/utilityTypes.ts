@@ -102,7 +102,7 @@ const fruitsName1: FruitNameTypes = null;
 const fruitsName2: FruitNameTypes = undefined;
 
 //Parameters
-function findFruitsByName({ name: string }): string {
+function findFruitsByName({ name }: { name: string }): string {
   return 'watermelon';
 }
 
