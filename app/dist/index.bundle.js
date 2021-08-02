@@ -190,13 +190,23 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, style) {\
 
 /***/ }),
 
+/***/ "./app/src/components/print.ts":
+/*!*************************************!*\
+  !*** ./app/src/components/print.ts ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"printText\": () => (/* binding */ printText)\n/* harmony export */ });\nfunction printText() {\n    console.log('print.ts');\n}\n\n\n//# sourceURL=webpack://typescript.toy/./app/src/components/print.ts?");
+
+/***/ }),
+
 /***/ "./app/src/index.ts":
 /*!**************************!*\
   !*** ./app/src/index.ts ***!
   \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_common_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./css/common.css */ \"./app/src/css/common.css\");\n/* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./css/style.css */ \"./app/src/css/style.css\");\n\n\nvar welcomeText = 'hello';\nvar names = ['a', 'b', 'c'];\nnames.map(function (item) {\n    console.log(item);\n});\nvar el = document.createElement('div');\nel.innerHTML = welcomeText;\ndocument.body.appendChild(el);\n\n\n//# sourceURL=webpack://typescript.toy/./app/src/index.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_common_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./css/common.css */ \"./app/src/css/common.css\");\n/* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./css/style.css */ \"./app/src/css/style.css\");\n/* harmony import */ var _components_print__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/print */ \"./app/src/components/print.ts\");\n\n\n\nvar welcomeText = 'hello';\nvar names = ['a', 'b', 'c'];\nnames.map(function (item) {\n    console.log(item);\n});\nvar btn = document.createElement('button');\nbtn.innerHTML = 'click';\nbtn.onclick = _components_print__WEBPACK_IMPORTED_MODULE_2__.printText;\nvar el = document.createElement('div');\nel.innerHTML = welcomeText;\nel.appendChild(btn);\ndocument.body.appendChild(el);\n\n\n//# sourceURL=webpack://typescript.toy/./app/src/index.ts?");
 
 /***/ })
 
@@ -310,7 +320,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"main": 0
+/******/ 			"index": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
