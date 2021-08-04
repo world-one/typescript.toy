@@ -8,8 +8,16 @@ module.exports = {
   //   contentBase: './app/dist',
   // },
   entry: {
-    index: './app/src/index.ts',
-    print: './app/src/components/print.ts'
+    index: { 
+      import: './app/src/index.ts', 
+      dependOn: 'shared'
+    },
+    print: './app/src/components/print.ts',
+    another: {
+      import: './app/src/components/another.ts',
+      dependOn: 'shared'
+    },
+    shared: 'lodash',
   },
   plugins: [
     new HtmlWebpackPlugin({

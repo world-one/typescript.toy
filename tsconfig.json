@@ -6,6 +6,8 @@
     "target": "es5",
     "jsx": "react",
     "allowJs": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    //Module '"/Users/j/Documents/dev/github/world-one/typescript.toy/node_modules/@types/lodash/index"' can only be default-imported using the 'allowSyntheticDefaultImports' flag
+    "allowSyntheticDefaultImports": true 
   }
 }

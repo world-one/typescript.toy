@@ -1,6 +1,7 @@
 import './css/common.css';
 import './css/style.css';
 import { printText, addElement } from './components/print';
+import _ from 'lodash';
 
 const welcomeText = 'hello';
 
@@ -28,3 +29,4 @@ void addElement('webpack-dev-server');
 void addElement('hot reload');
 void addElement('hot reload222');
 void addElement('hot reload333');
+console.log(_.join(['index', 'Another', 'module', 'loaded!'], ' '));
