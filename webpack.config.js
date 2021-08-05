@@ -13,14 +13,24 @@ module.exports = {
     another: './app/src/components/another.ts',
     // shared: 'lodash',
   },
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: 'all',
+  //   },
+  // },
   optimization: {
+    moduleIds: 'deterministic',
+    runtimeChunk: 'single',
     splitChunks: {
-      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
     },
   },
-  // optimization: {
-  //   runtimeChunk: 'single',
-  // },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'DEV TITLE',
@@ -28,7 +38,7 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, 'app/dist'),
-    filename: '[name].bundle.js',
+    filename: '[name].[contenthash].js',
     clean: true,
     publicPath: '/',
   },
