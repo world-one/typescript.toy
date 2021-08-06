@@ -2,6 +2,7 @@ import './css/common.css';
 import './css/style.css';
 import { printText, addElement } from './components/print';
 import _ from 'lodash';
+// import { webpackNumbers } from '../../library/dist/webpack-numbers';
 
 const welcomeText = 'hello';
 
@@ -30,3 +31,8 @@ void addElement('hot reload');
 void addElement('hot reload222');
 void addElement('hot reload333');
 console.log(_.join(['index', 'Another', 'module', 'loaded!'], ' '));
+const webpackNumbers = require('../../library/dist/webpack-numbers');
+// ...
+webpackNumbers.wordToNum('Two');
+console.log(webpackNumbers.wordToNum('Two'));
+console.log(webpackNumbers.wordToNum('Five'));
