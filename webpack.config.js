@@ -51,7 +51,16 @@ module.exports = (env) => {
       rules: [
         {
           test: /\.tsx?$/,
-          use: 'ts-loader',
+          use: [
+            { 
+              loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+              },
+            },
+          ],
+          // include로 실제 변환해야하는 곳에만 로더 적용
+          include: path.resolve(__dirname, 'app/src'),
           exclude: /node_modules/,
         },
         {
