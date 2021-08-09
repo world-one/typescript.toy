@@ -2,7 +2,7 @@ import './css/common.css';
 import './css/style.css';
 import { printText, addElement } from './components/print';
 import _ from 'lodash';
-// import { webpackNumbers } from '../../library/dist/webpack-numbers';
+import { cube } from './utils/math';
 
 const welcomeText = 'hello';
 
@@ -36,3 +36,10 @@ const webpackNumbers = require('../../library/dist/webpack-numbers');
 webpackNumbers.wordToNum('Two');
 console.log(webpackNumbers.wordToNum('Two'));
 console.log(webpackNumbers.wordToNum('Five'));
+
+const elPre = document.createElement('pre');
+elPre.innerHTML = `
+  'Webpack, 5 cubed is equere to ${cube(5)}'
+`;
+
+document.body.appendChild(elPre);

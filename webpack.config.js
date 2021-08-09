@@ -50,7 +50,7 @@ module.exports = (env) => {
     module: {
       rules: [
         {
-          test: /\.tsx?$/,
+          test: /\.(ts|tsx)?$/,
           use: [
             { 
               loader: 'ts-loader',
@@ -61,7 +61,7 @@ module.exports = (env) => {
           ],
           // include로 실제 변환해야하는 곳에만 로더 적용
           include: path.resolve(__dirname, 'app/src'),
-          exclude: /node_modules/,
+          exclude: ['/node_modules'],
         },
         {
           test: /\.css$/i,
