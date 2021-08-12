@@ -1,14 +1,12 @@
 {
   "compilerOptions": {
     "outDir": "./dist/",
-    "noImplicitAny": true, // 타입 추론을 허용하지 않음
-    "sourceMap": true,
-    "module": "es6",
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "esModuleInterop": true,
     "target": "es5",
     "jsx": "react",
     "allowJs": true,
-    "moduleResolution": "node",
-    //Module '"/Users/j/Documents/dev/github/world-one/typescript.toy/node_modules/@types/lodash/index"' can only be default-imported using the 'allowSyntheticDefaultImports' flag
-    "allowSyntheticDefaultImports": true 
+    "moduleResolution": "node"
   }
 }
