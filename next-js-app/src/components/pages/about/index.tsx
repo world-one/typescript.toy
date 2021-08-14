@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
+import Header from '../../organisoms/header/Header';
 
-const About = () => {
+const About: FC = () => {
   return (
-    <div>about</div>
+    <Header />
   );
 }
 
