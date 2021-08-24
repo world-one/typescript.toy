@@ -60,7 +60,7 @@ const Regex: FC = () => {
     <div>
       <input type="text" onChange={(e) => {
         const value: string = e.target.value;
-        const pattern = new RegExp(PATTERN.EMAIL, 'g');
+        const pattern = new RegExp(PATTERN.EMAIL_B, 'g');
         console.log(pattern);
         const matchingWords = value.match(pattern);
         console.log(machingWords);
@@ -76,6 +76,9 @@ const Regex: FC = () => {
 
 export default Regex;
 
+// abcd@gggg @ 뒤쪽으로 4글자 이상이 오면 일치
 const PATTERN = {
-  EMAIL: '^[a-zA-Z0-9]+@[a-zA-Z]+(\.[a-zA-Z]{2,3})$',
+  EMAIL_A: '^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,3})$', // abcd@gggg 인 경우 일치..
+  EMAIL_B: '^[a-zA-Z0-9]+@([a-zA-Z]+\.{1})[a-zA-Z]{2,3}$',
+  EMAIL_C: '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
 }
