@@ -1,7 +1,8 @@
 import React, { FC, useState, useEffect } from 'react';
 
 const Regex: FC = () => {
-  const [machingWords, setMachingWords] = useState<RegExpMatchArray>([]);
+  const [matchingWords, setMatchingWords] = useState<RegExpMatchArray>([]);
+
   // const [pattern, setPattern] = useState<string>('see (chapter \d+(\.\d)*)');
   const str = 'For more information, see Chapter 3.4.5.1'; 
   const email = 'worldone.dev@gmail.com';
@@ -16,7 +17,7 @@ const Regex: FC = () => {
       const match: RegExpMatchArray | null = email.match(regexPattern);
       console.log(match);
       if (!match) return;
-      setMachingWords(match);
+      setMatchingWords(match);
     } catch (error) {
       console.log(error);
     }
@@ -52,7 +53,7 @@ const Regex: FC = () => {
         </div>
       </div>
       <ul>
-        {machingWords.map((item, index) => <li key={index}>{item}</li>)}  
+        {matchingWords?.map((item, index) => <li key={index}>{item}</li>)}  
       </ul>
       <input onChange={(e) => void findMatchingWords(e.target.value)} />
       {/* <button onClick={() => {void findMatchingWords()}}>찾기</button> */}
@@ -62,11 +63,11 @@ const Regex: FC = () => {
         const value: string = e.target.value;
         const pattern = new RegExp(PATTERN.EMAIL_B, 'g');
         console.log(pattern);
-        const matchingWords = value.match(pattern);
-        console.log(machingWords);
+        const matched = value.match(pattern);
+        console.log(matched);
         
 
-        setIsMaching(`${matchingWords} [${pattern.test(value)}]`);
+        setIsMaching(`${matched} [${pattern.test(value)}]`);
       }}/>
       <p>{isMatching}</p>
     </div>
@@ -79,6 +80,9 @@ export default Regex;
 // abcd@gggg @ 뒤쪽으로 4글자 이상이 오면 일치
 const PATTERN = {
   EMAIL_A: '^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,3})$', // abcd@gggg 인 경우 일치..
-  EMAIL_B: '^[a-zA-Z0-9]+@([a-zA-Z]+\.{1})[a-zA-Z]{2,3}$',
-  EMAIL_C: '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+  //RegExp("pattern") 표기를 쓰면서 \ 자체를 이스케이프 해줘야한다.
+  EMAIL_B: '^[a-zA-Z0-9]+@\\w+\\.[a-zA-Z]{2,3}$', 
+  EMAIL_C: '^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$',
+  EMAIL_D: '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
 }
+
