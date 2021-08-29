@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from 'react-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -37,9 +36,11 @@ const EXCHANGE_RATES = gql`
 
 function ExchangeRates() {
   const { loading, error, data } = useQuery(EXCHANGE_RATES);
-
+  console.log(loading, error);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
+
+    
 
   return data.rates.map(({ currency, rate }: any) => (
     <div key={currency}>
