@@ -8,7 +8,8 @@ import {
 } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: 'https://48p1r2roz4.sse.codesandbox.io',
+  // uri: 'https://48p1r2roz4.sse.codesandbox.io',
+  uri: 'http://localhost:4000',
   cache: new InMemoryCache()
 });
 
@@ -17,7 +18,8 @@ const Apollo = () => {
     <ApolloProvider client={client}>
     <div>
       <h2>My first Apollo app 🚀</h2>
-      <ExchangeRates />
+      {/* <ExchangeRates /> */}
+      <Books />
     </div>
     </ApolloProvider>
   );
@@ -33,6 +35,33 @@ const EXCHANGE_RATES = gql`
     }
   }
 `;
+
+const BOOKS_QUERY = gql`
+  query Books {
+    books {
+      title,
+      author
+    }
+  }
+`;
+
+function Books() {
+  const { loading, error, data } = useQuery(BOOKS_QUERY);
+  console.log({
+    loading, error, data
+  });
+  
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
+  return data.books.map(({ title, author }: any, index: number) => (
+    <div key={index}>
+      <p>
+        {title}: {author}
+      </p>
+    </div>
+  ));
+}
 
 function ExchangeRates() {
   const { loading, error, data } = useQuery(EXCHANGE_RATES);
