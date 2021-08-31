@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ApolloClient,
   InMemoryCache,
@@ -14,12 +14,18 @@ const client = new ApolloClient({
 });
 
 const Apollo = () => {
+  const [bookTitle, setBookTitle] = useState<string>();
   return (
     <ApolloProvider client={client}>
     <div>
       <h2>My first Apollo app 🚀</h2>
       {/* <ExchangeRates /> */}
-      <Books />
+      <input type="text" onChange={(e) => {
+        console.log(e.target.value);
+        
+        setBookTitle(e.target.value)
+      }}/>
+      <Books title={bookTitle} />
     </div>
     </ApolloProvider>
   );
@@ -37,16 +43,30 @@ const EXCHANGE_RATES = gql`
 `;
 
 const BOOKS_QUERY = gql`
-  query Books {
-    books {
+  query GetBooks($title: String!) {
+    books(title: $title) {
       title,
       author
     }
   }
 `;
 
-function Books() {
-  const { loading, error, data } = useQuery(BOOKS_QUERY);
+const BOOKS_MUTATIONG = gql`
+  query GetBook($title: String!) {
+    getBook(title: $title) {
+      title,
+      author
+    }
+  }
+`;
+
+function Books({ title }: { title: string }) {
+  console.log(title);
+  const { loading, error, data } = useQuery(BOOKS_QUERY, {
+    variables: {
+      title
+    }
+  });
   console.log({
     loading, error, data
   });

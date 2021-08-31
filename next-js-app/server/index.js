@@ -4,12 +4,16 @@ const {
 } = require('apollo-server-core');
 
 const typeDefs = gql`
+  type Mutation {
+    addBook(title: String): Book
+  }
+  type Query {
+    title: String
+    books(title: String): [Book]
+  }
   type Book {
     title: String
     author: String
-  }
-  type Query {
-    books: [Book]
   }
 `;
 
@@ -26,7 +30,13 @@ const books = [
 
 const resolvers = {
   Query: {
-    books: () => books,
+    books: (title) => {
+      console.log(title);
+      return books.map((item) => {
+        return item.title === title;
+      })
+      return books;
+    }
   }
 };
 
