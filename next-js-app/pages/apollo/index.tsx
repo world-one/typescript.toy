@@ -17,16 +17,16 @@ const Apollo = () => {
   const [bookTitle, setBookTitle] = useState<string>();
   return (
     <ApolloProvider client={client}>
-    <div>
-      <h2>My first Apollo app 🚀</h2>
-      {/* <ExchangeRates /> */}
-      <input type="text" onChange={(e) => {
-        console.log(e.target.value);
-        
-        setBookTitle(e.target.value)
-      }}/>
-      <Books title={bookTitle} />
-    </div>
+      <div>
+        <h2>My first Apollo app 🚀</h2>
+        {/* <ExchangeRates /> */}
+        <input type="text" onChange={(e) => {
+          console.log(e.target.value);
+
+          setBookTitle(e.target.value)
+        }} />
+        <Books title={bookTitle} />
+      </div>
     </ApolloProvider>
   );
 }
@@ -70,7 +70,7 @@ function Books({ title }: { title: string }) {
   console.log({
     loading, error, data
   });
-  
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
@@ -89,7 +89,7 @@ function ExchangeRates() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-    
+
 
   return data.rates.map(({ currency, rate }: any) => (
     <div key={currency}>
