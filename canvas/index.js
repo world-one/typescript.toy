@@ -20,6 +20,39 @@
 // ctx.lineTo(150, 130);
 // ctx.fill();
 
+moveElement();
+
+function moveElement() {
+  let start = null;
+    const element = document.getElementById('SomeElementYouWantToAnimate');
+    element.style.position = 'absolute';
+
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      const progress = timestamp - start;
+      element.style.left = Math.min(progress / 10, 400) + 'px';
+      if (progress < 4000) {
+        window.requestAnimationFrame(step);
+        return;
+      }
+      start = timestamp;
+      window.requestAnimationFrame(goBack);
+    }
+
+    function goBack(timestamp) {
+      const progress = timestamp - start;
+      element.style.left = Math.max((400 - progress / 10), 0) + 'px';
+      if (progress < 4000) {
+        window.requestAnimationFrame(goBack);
+        return;
+      }
+      start = null;
+      window.requestAnimationFrame(step);
+    }
+
+    window.requestAnimationFrame(step);
+}
+
 window.onload = () => {
   new Canvas();
 }
