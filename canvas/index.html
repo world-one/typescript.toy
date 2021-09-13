@@ -16,9 +16,22 @@
   <div id='SomeElementYouWantToAnimate'>SomeElementYouWantToAnimate</div>
 
   <canvas style="border: 1px solid #000;" id='draw' width="500" height="500"></canvas>
+  <button id="clearCanvas">초기화</button>
   <script type="module" src="./index.js"></script>
-  <script type="module" src="./draw.js"></script>
+  <script type="module" src="./draw.js">
+    import { removeAll } from './draw.js';
 
+    const clearButton = document.getElementById('clearCanvas');
+    console.log(clearButton)
+    clearButton.addEventListener('click', removeAll);
+  </script>
+  <script type="module">
+    import { clearAll } from './draw.js';
+
+    const clearButton = document.getElementById('clearCanvas');
+    console.log(clearButton)
+    clearButton.addEventListener('click', clearAll);
+  </script>
 </body>
 
 </html>

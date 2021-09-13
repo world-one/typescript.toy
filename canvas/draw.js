@@ -35,3 +35,7 @@ function finishDraw() {
     position.X = -1;
     position.Y = -1;
 }
+
+export function clearAll() {
+    ctx.clearRect(0,0, canvas.clientWidth, canvas.height);
+}
