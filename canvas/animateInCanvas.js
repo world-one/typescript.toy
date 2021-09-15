@@ -6,14 +6,31 @@ class HeartBeat {
         const ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.ctx = ctx;
-        this.drawHeart();
+        this.beat();
     }
 
-    drawHeart() {
+    beat() {
+        let size = 150;
+        setInterval(() => {
+            this.clear();
+            this.drawHeart(size);
+            if (size > 150) {
+                size -= 10;    
+            } else {
+                size += 10;    
+            }
+        }, 200)
+    }
+
+    clear() {
+        this.ctx.clearRect(0,0,300, 300);
+    }
+
+    drawHeart(size) {
         const x = 150;
-        const y = 150;
-        const width = 150 ;
-        const height = 150;
+        const y = 50;
+        const height = size;
+        const width = size;
         const ctx = this.ctx;
 
 
@@ -51,9 +68,8 @@ class HeartBeat {
         // ctx.closePath();
         ctx.fillStyle = 'red';
         ctx.fill();
-        // ctx.restore();
-
-        ctx.clearRect(125, 200, 50, 50);
+        // ctx.restore();  
+        
     }
 }
 
