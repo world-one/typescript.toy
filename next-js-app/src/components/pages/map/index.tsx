@@ -1,7 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, { Layer, LayerProps, Source } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from 'mapbox-gl';
+import { FeatureCollection } from 'geojson';
 
 const LAYER_ID = 'testLayer'
 const Map: FC = () => {
@@ -14,30 +15,30 @@ const Map: FC = () => {
         zoom: 16,
       });
 
-    useEffect(() => {
-        if (!map) return;
-        map.addSource(LAYER_ID, {
-            type: 'geojson',
-            data: gangnamGeoJson,
-        });
+    // useEffect(() => {
+    //     if (!map) return;
+    //     map.addSource(LAYER_ID, {
+    //         type: 'geojson',
+    //         data: gangnamGeoJson,
+    //     });
 
-        map.addLayer({
-            id: `${LAYER_ID}-line`,
-            source: LAYER_ID,
-            type: 'line',
-            paint: {
-                'line-color': 'yellow',
-                'line-width': 12,
-            },
-        }).addLayer({
-            id: `${LAYER_ID}-fill`,
-            source: LAYER_ID,
-            type: 'fill',
-            paint: {
-                'fill-color': 'coral',
-            },
-        })
-    },[])
+    //     map.addLayer({
+    //         id: `${LAYER_ID}-line`,
+    //         source: LAYER_ID,
+    //         type: 'line',
+    //         paint: {
+    //             'line-color': 'yellow',
+    //             'line-width': 12,
+    //         },
+    //     }).addLayer({
+    //         id: `${LAYER_ID}-fill`,
+    //         source: LAYER_ID,
+    //         type: 'fill',
+    //         paint: {
+    //             'fill-color': 'coral',
+    //         },
+    //     })
+    // },[])
       
     return (
     <ReactMapGL
@@ -50,12 +51,42 @@ const Map: FC = () => {
         onClick={(e) => {
             console.log(e);
         }}
-    />
+    >
+        <Source
+         id={LAYER_ID}
+         type={'geojson'} 
+         data={gangnamGeoJson as FeatureCollection} />
+        <Layer
+            {...LAYER_LINE_PROPS}
+        />
+        <Layer
+            {...LAYER_FILL_PROPS}
+        />
+    </ReactMapGL>
     );
 }
 
 export default Map;
 
+const LAYER_LINE_PROPS: LayerProps = {
+    id: `${LAYER_ID}-line`,
+    source: LAYER_ID,
+    type: 'line',
+    paint: {
+        'line-color': 'yellow',
+        'line-width': 12,
+    },
+};
+
+const LAYER_FILL_PROPS: LayerProps = {
+    id: `${LAYER_ID}-fill`,
+    source: LAYER_ID,
+    type: 'fill',
+    paint: {
+        'fill-color': 'coral',
+        'fill-opacity': 0.4
+    },
+};
 
 const gangnamGeoJson = {
     "type": "FeatureCollection",
