@@ -1,19 +1,23 @@
 class HeartBeat {
     canvas;
     ctx;
+    size = 150;
     constructor() {
         const canvas = document.getElementById('canvas_one');
         const ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.ctx = ctx;
-        this.beat();
+
+        // this.beat();
+        requestAnimationFrame(this.small.bind(this));
         let rectX = 1;
         let rectY = 1;
-        setInterval(() => {
-            rectX = rectY += 1;
-            console.log(rectY, rectX)
-            this.move(rectX, rectY);
-        }, 1000)
+        this.move(rectX, rectY);
+        // setInterval(() => {
+        //     rectX = rectY += 1;
+        //     console.log(rectY, rectX)
+   
+        // }, 1000)
         
     }
 
@@ -23,29 +27,58 @@ class HeartBeat {
     }
 
     beat() {
-        let size = 150;
-        setInterval(() => {
+        // let size = 150;
+        // let scale = 1;
+        // setInterval(() => {
             this.clear();
-            this.drawHeart(size);
-            if (size > 150) {
-                size -= 10;    
-            } else {
-                size += 10;    
-            }
-        }, 200)
+            this.drawHeart(this.size, 1);
+            // if (scale <= 1) {
+            //     scale += 0.1;
+            // } else {
+            //     scale = 1;
+            // }
+            // if (this.size > 150) {
+            //     this.size -= 50;    
+            // } else {
+            //     this.size += 50;    
+            // }
+            // requestAnimationFrame(this.beat.bind(this));
+        // }, 200)
+    }
+
+    small() {
+        this.beat();
+        if (this.size > 100) {
+            this.size -= 1;
+            requestAnimationFrame(this.small.bind(this));
+            return;
+        } 
+        requestAnimationFrame(this.big.bind(this));
+    }
+
+    big() {
+        this.beat();
+        if (this.size < 150) {
+            this.size += 1;
+            requestAnimationFrame(this.big.bind(this));
+            return;
+        } 
+        requestAnimationFrame(this.small.bind(this));
     }
 
     clear() {
         this.ctx.clearRect(0,0,300, 300);
     }
 
-    drawHeart(size) {
+    drawHeart(size, scale) {
         const x = 150;
         const y = 50;
         const height = size;
         const width = size;
         const ctx = this.ctx;
         
+        // console.log(scale);
+        // ctx.scale(scale,scale);
         ctx.beginPath();
         const downCurvePoint = height * 0.36;
         ctx.moveTo(x, y + downCurvePoint);
