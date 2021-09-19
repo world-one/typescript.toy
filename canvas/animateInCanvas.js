@@ -7,6 +7,19 @@ class HeartBeat {
         this.canvas = canvas;
         this.ctx = ctx;
         this.beat();
+        let rectX = 1;
+        let rectY = 1;
+        setInterval(() => {
+            rectX = rectY += 1;
+            console.log(rectY, rectX)
+            this.move(rectX, rectY);
+        }, 1000)
+        
+    }
+
+    move(x, y) {
+        this.ctx.fillStyle = 'blue';
+        this.ctx.fillRect(x, y, 10, 10);
     }
 
     beat() {
@@ -32,8 +45,7 @@ class HeartBeat {
         const height = size;
         const width = size;
         const ctx = this.ctx;
-
-
+        
         ctx.beginPath();
         const downCurvePoint = height * 0.36;
         ctx.moveTo(x, y + downCurvePoint);
