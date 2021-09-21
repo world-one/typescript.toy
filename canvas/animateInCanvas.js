@@ -48,7 +48,7 @@ class HeartBeat {
 
     small() {
         this.beat();
-        if (this.size > 100) {
+        if (this.size > 140) {
             this.size -= 1;
             requestAnimationFrame(this.small.bind(this));
             return;
@@ -72,7 +72,7 @@ class HeartBeat {
 
     drawHeart(size, scale) {
         const x = 150;
-        const y = 50;
+        const y = size / 2;
         const height = size;
         const width = size;
         const ctx = this.ctx;
