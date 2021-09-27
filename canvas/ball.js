@@ -16,7 +16,7 @@ class Ball{
     this.radius = radius;
     this.color = color;
     
-    this.draw();
+    // this.draw();
   }
 
   checkBound(currentPoint, changePoint) {
@@ -65,14 +65,39 @@ class Ball{
   draw(){
     this.moveX();
     this.moveY();
-    ctx.clearRect(0, 0, canvas_width, canvas_height);
+
     ctx.beginPath();
     ctx.fillStyle=this.color;
     // x, y, radius, startAngle, endAngle, anticlockwise
     ctx.arc(this.x, this.y, this.radius, Math.PI*2, false);
+    ctx.closePath();
     ctx.fill();
-    requestAnimationFrame(this.draw.bind(this));
+    // requestAnimationFrame(this.draw.bind(this));
   }
 }
 
-new Ball(50, 50, 13, 10, 'red');
+const BALL_COLORS = ['red', 'coral', 'blue', 'yellow', 'green', 'aqua'];
+
+const balls = BALL_COLORS.map((color) => {
+  const positionX = getRandomInt(1, 500);
+  const positionY = getRandomInt(1, 300);
+  const size = getRandomInt();
+  const speed = getRandomInt(1, 10);
+  return new Ball(positionX, positionY, size, speed, color)
+});
+
+function start() {
+  ctx.clearRect(0, 0, canvas_width, canvas_height);
+  balls.forEach((item) => {
+    item.draw();
+  })
+  requestAnimationFrame(start);
+}
+
+start();
+
+function getRandomInt(min = 10, max = 50) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
+}
