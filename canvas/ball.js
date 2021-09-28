@@ -11,11 +11,17 @@ class Ball{
   constructor(x, y, radius, speed, color){
     this.x = x;
     this.y = y;
-    this.vx = speed;
-    this.vy = speed;
+    this.vx = x / speed;
+    this.vy = y / speed;
     this.radius = radius;
     this.color = color;
     
+    if (x > canvas_width / 2) {
+      this.isBoundX = true;
+    }
+    if (y > canvas_height / 2) {
+      this.isBoundY = true;
+    }
     // this.draw();
   }
 
@@ -76,13 +82,13 @@ class Ball{
   }
 }
 
-const BALL_COLORS = ['red', 'coral', 'blue', 'yellow', 'green', 'aqua'];
+const BALL_COLORS = ['red', 'coral', 'blue', 'yellow', 'green', 'aqua', 'black', 'pink'];
 
 const balls = BALL_COLORS.map((color) => {
   const positionX = getRandomInt(1, 500);
   const positionY = getRandomInt(1, 300);
   const size = getRandomInt();
-  const speed = getRandomInt(1, 10);
+  const speed = getRandomInt(10, 100);
   return new Ball(positionX, positionY, size, speed, color)
 });
 
