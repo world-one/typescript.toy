@@ -3,41 +3,43 @@ const description = `
     특정한 값을 기준으로 큰 숫자와 작은 숫자를 나눈다.
     쪼개서 각자 정렬
     O(N * logN) 
-    최악일 경우 O(N^2)
+    거의 정렬된 경우, 최악일 경우 O(N^2)
     Pivot 기준값
 `
 
 function sort(numbers) {
-   quickSort(numbers, 0, numbers.length - 1);
-   return numbers;
+    let result = [...numbers];
+    quickSort(result, 0, numbers.length - 1);
+    return result;
 }
 
-function quickSort(data, start, end) {
-    if (start >= end) return;
+function quickSort(data, baseIndex, lastIndex) {
+    if (baseIndex >= lastIndex) return;
 
-    let i = start + 1;
-    let j = end;
+    const pivot = data[baseIndex]
+    let leftIndex = baseIndex + 1;
+    let rightIndex = lastIndex;
     let temp;
 
-    while (i <= j) {
-        while (data[i] <= data[start]){
-            i++
+    while (leftIndex <= rightIndex) {
+        while (pivot >= data[leftIndex]){
+            leftIndex++;
         }
-        while (data[j] >= data[start] && j > start) {
-            j--;
+        while (pivot <= data[rightIndex] && rightIndex > baseIndex) {
+            rightIndex--;
         }
-        if (i > j) {
-            temp = data[j];
-            data[j] = data[start];
+        if (leftIndex > rightIndex) {
+            temp = data[rightIndex];
+            data[rightIndex] = data[baseIndex];
+            data[baseIndex] = temp;
         } else {
-            temp = data[j];
-            data[j] = data[i];
-            data[i] = temp;
+            temp = data[rightIndex];
+            data[rightIndex] = data[leftIndex];
+            data[leftIndex] = temp;
         }
     }
-
-    quickSort(data, start, j - 1);
-    quickSort(data, j + 1, end);
+    quickSort(data, baseIndex, rightIndex - 1);
+    quickSort(data, rightIndex + 1, lastIndex);
 }
 
 const numbers = [1, 10, 5, 8, 7, 6, 4, 3, 2, 9];
