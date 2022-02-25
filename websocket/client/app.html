@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const ws = 'ws://localhost:8999';
+        let output;
+        let websocket;
+        function init() {
+            output = document.getElementById('output');
+            test();
+        }
+
+        function test() {
+            websocket = new WebSocket(ws, 'protocolOne');
+            websocket.onopen = function(e) { onOpen(e); };
+            websocket.onmessage = function(e) { onMessage(e)}
+        }
+
+        function onOpen(e) {
+            write('연결 완료');
+            send('send');
+        }
+
+        function send(msg) {
+            write('msg: ' + msg);
+            websocket.send(msg)
+        }
+
+        function onMessage(e) {
+            console.log(e);
+            write('msg: ' + e.data);
+            // websocket.close();
+        }
+
+        function write(msg) {
+            const el = document.createElement('p');
+            el.style.wordWrap = 'break-word';
+            el.innerHTML = msg;
+            output.appendChild(el);
+        }
+
+        function inputOnChange(e) {
+            console.log(e.value);
+            send(e.value)
+        }
+
+        window.addEventListener('load', init, false);
+    </script>
+</head>
+<body>
+    <div id="output"></div>
+    <input type="text" onchange="inputOnChange(this)">
+</body>
+</html>
