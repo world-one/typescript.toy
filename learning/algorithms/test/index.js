@@ -63,3 +63,39 @@ function checkNumberLength(number) {
 }
 
 console.log(formatDate("12/31/2014"));
+
+
+function solution(matrix) {
+  const length = matrix.length;
+  const addedValue = getCalcValues(matrix);
+  let answer = [];
+
+  for (let i = 0; i < length; i++) {
+    const rows = [];
+    for (let j = 0; j < length; j++) {
+      rows.push(addedValue[i].row + addedValue[j].col - matrix[i][j]);
+    }
+    answer.push(rows);
+  }
+
+  return answer;
+}
+
+function getCalcValues(matrix) {
+  const length = matrix.length;
+  let addedValue = [];
+
+  for (let i = 0; i < length; i++) {
+    addedValue[i] = {
+      row: 0,
+      col: 0
+    };
+
+    for (let j = 0; j < length; j++) {
+      addedValue[i].row += matrix[i][j];
+      addedValue[i].col += matrix[j][i];
+    }
+  }
+
+  return addedValue;
+}
