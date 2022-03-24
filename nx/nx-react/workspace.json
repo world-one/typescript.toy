@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "nx-react": "apps/nx-react",
+    "nx-react-e2e": "apps/nx-react-e2e"
+  }
+}

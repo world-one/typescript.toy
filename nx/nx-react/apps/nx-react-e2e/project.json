@@ -1,0 +1,28 @@
+{
+  "root": "apps/nx-react-e2e",
+  "sourceRoot": "apps/nx-react-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/nx-react-e2e/cypress.json",
+        "devServerTarget": "nx-react:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "nx-react:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/nx-react-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["nx-react"]
+}
