@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    window.onload = () => {
+      const userName = document.getElementById('userName');
+      const userSessionName = document.getElementById('userSessionName');
+      userName.innerText = getUserName();
+      userSessionName.innerText = getSessionUserName();
+    }
+
+    function getUserName() {
+      return localStorage.getItem('name');
+    }
+    function getSessionUserName() {
+      return sessionStorage.getItem('name');
+    }
+
+    function setName(name) {
+      console.log(name);
+      localStorage.setItem('name', name);
+    }
+
+    function setSessionName(name) {
+      console.log(name);
+      sessionStorage.setItem('name', name);
+    }
+  </script>
+</head>
+<body>
+  <div>
+    <div>
+      <input type="text" onchange="setName(this.value)">
+    </div>
+    <span>이름: </span>
+    <span id='userName'>null</span>
+  </div>
+  <div>
+      <div>
+        <input type="text" onchange="setSessionName(this.value)">
+      </div>
+      <span>세션 이름: </span>
+      <span id='userSessionName'>null</span>
+    </div>
+</body>
+</html>
