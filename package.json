@@ -1,4 +1,6 @@
 {
+  "private": true,
+  "workspaces": ["app/react", "app/gatsby", "app/library", "app/lodash"],
   "devDependencies": {
     "@types/next": "^9.0.0"
   },
