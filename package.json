@@ -1,6 +1,9 @@
 {
   "private": true,
   "workspaces": ["app/react", "app/gatsby", "app/library", "app/lodash"],
+  "scripts": {
+    "react:start": "yarn workspace react start"
+  },
   "devDependencies": {
     "@types/next": "^9.0.0"
   },
