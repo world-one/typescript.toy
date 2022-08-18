@@ -1,15 +1,31 @@
 import React, { FC, useState, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber'
+import {useForm} from "react-hook-form";
 
 
 const Root: FC = () => {
+
+  const {register, handleSubmit, watch, formState: {errors}} = useForm()
+
+  function onSubmit() {
+    console.log('on Submit')
+  }
+
+  console.log(watch('userName'))
   return (
-    <Canvas>
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-      <Box position={[-1.2, 0, 0]} />
-      <Box position={[1.2, 0, 0]} />
-    </Canvas>
+    <div>
+      <Canvas>
+        <ambientLight />
+        <pointLight position={[10, 10, 10]} />
+        <Box position={[-1.2, 0, 0]} />
+        <Box position={[1.2, 0, 0]} />
+      </Canvas>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input {...register('userName', {required: true})} />
+        {errors.userName && <span>required</span>}
+        <button type={"submit"}>입력</button>
+      </form>
+    </div>
   );
 }
 
