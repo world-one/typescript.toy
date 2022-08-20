@@ -1,6 +1,6 @@
 {
   "private": true,
-  "workspaces": ["app/react", "app/gatsby", "app/library", "app/lodash"],
+  "workspaces": ["app/react", "app/gatsby", "app/library", "app/lodash", "app/admin"],
   "scripts": {
     "react:start": "yarn workspace react start"
   },
