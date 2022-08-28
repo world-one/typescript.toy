@@ -1,14 +1,12 @@
-// by ES2015
 import Stack from './Stack';
-
 import React from 'react';
 
 type ElTypes = HTMLElement | null;
 
-class Calculator extends React.Component{
+class Calculator extends React.Component {
 
   keypadEl: ElTypes;
-  processEL: ElTypes;
+  processEl: ElTypes;
   resultEl: ElTypes;
   onClickHandler: any;
   inputValueArr = [];

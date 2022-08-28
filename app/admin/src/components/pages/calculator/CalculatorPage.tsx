@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import DrawKeyPad from './library/DrawKeypad';
 import Calc from './library/Calculator';
-import '../../../sass/calculator.css';
+
+const drawKeyPad = new DrawKeyPad();
 
 function Calculator() {
   useEffect(() =>{
-    new DrawKeyPad();
+    void drawKeyPad.draw();
     new Calc({targetElId: 'js-keypad', processElId: 'js-process', resultElId: 'js-result'});
-    // new Calc( 'js-keypad',  'js-process', 'js-result');
-  });
+  }, []);
 
   return <>
     <div className="wrap__calculator">
