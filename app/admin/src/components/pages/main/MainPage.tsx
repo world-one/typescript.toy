@@ -1,22 +1,23 @@
 import {FC, useEffect, useState} from 'react';
 import Button from "@mui/material/Button";
-import {Autocomplete, Box, Container, TextField, Typography} from "@mui/material";
+import {Autocomplete, Box, Container, Input, TextField, Typography} from "@mui/material";
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
+import { useDebounce } from "../../../utils/debouncer";
 
 interface PropTypes {}
 
 const MainPage: FC<PropTypes> = () => {
   const [value, setValue] = useState<any>();
+  const [inputValue, setInputValue] = useState<string | null>(null);
 
-  useEffect(() => {
-
-  },[])
+  void useDebounce(inputValue, () => console.log('debounce'))
 
   return <div>
     <Container maxWidth="sm">
       <Box sx={{ my: 4 }}>
+        <Input onChange={(e) => setInputValue(e.target.value)} />
         <Typography variant="h4" component="h1" gutterBottom>
           Next.js example
         </Typography>
