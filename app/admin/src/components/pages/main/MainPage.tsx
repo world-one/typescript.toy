@@ -5,6 +5,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import { useDebounce } from "../../../utils/debouncer";
+import globalStore from "../../../stores/GlobalStore";
+import {observer, Observer} from "mobx-react-lite";
+import Link from "next/link";
 
 interface PropTypes {}
 
@@ -14,8 +17,10 @@ const MainPage: FC<PropTypes> = () => {
 
   void useDebounce(inputValue, () => console.log('debounce'))
 
-  return <div>
-    <Container maxWidth="sm">
+  return <Container maxWidth="sm">
+    <Link href={'/about'}>about</Link>
+    <Counter />
+    <Number />
       <Box sx={{ my: 4 }}>
         <Input onChange={(e) => setInputValue(e.target.value)} />
         <Typography variant="h4" component="h1" gutterBottom>
@@ -41,10 +46,23 @@ const MainPage: FC<PropTypes> = () => {
         </Button>
       </Box>
     </Container>
-  </div>
 };
 
 export default MainPage;
+
+const Counter = () => {
+  return (<button onClick={() => {
+    globalStore.increaseAction(1);
+  }}>
+    증가
+  </button>)
+}
+
+const Number = () => {
+  return <Observer>
+    {() => <div>{globalStore.num}</div>}
+  </Observer>;
+}
 
 const top100Films = [
   { label: 'The Shawshank Redemption', year: 1994 },
