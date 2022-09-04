@@ -8,7 +8,7 @@ const Header: FC = () => {
       <Logo />
       <Menu />
     </header>
-  )
-}
+  );
+};
 
 export default Header;

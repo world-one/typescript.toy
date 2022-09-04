@@ -1,10 +1,8 @@
 import { FC } from 'react';
-import CalculatorPage from "../../src/components/pages/calculator/CalculatorPage";
+import CalculatorPage from '../../src/components/pages/calculator/CalculatorPage';
 
-interface PropTypes {}
-
-const Calculator: FC<PropTypes> = () => {
-  return <CalculatorPage />
+const Calculator: FC = () => {
+  return <CalculatorPage />;
 };
 
-export default Calculator
+export default Calculator;

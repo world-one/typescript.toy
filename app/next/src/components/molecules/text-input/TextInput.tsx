@@ -1,9 +1,8 @@
-import { FC } from "react";
-import { useRecoilState } from "recoil";
-import { textState } from "../../pages/recoil/store/states";
+import { FC } from 'react';
+import { useRecoilState } from 'recoil';
+import { textState } from '../../pages/recoil/store/states';
 
 const TextInput: FC = () => {
-  
   const [text, setText] = useRecoilState<string>(textState);
 
   function onChange(e: any): void {
@@ -16,7 +15,7 @@ const TextInput: FC = () => {
       <br />
       input text : {text}
     </div>
-  )
-}
+  );
+};
 
 export default TextInput;

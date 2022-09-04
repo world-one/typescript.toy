@@ -10,5 +10,5 @@ export const charCountState = selector({
   get: ({ get }) => {
     const text = get(textState);
     return text.length;
-  }
+  },
 });

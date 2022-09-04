@@ -1,10 +1,8 @@
-import type { NextPage } from 'next'
-import MainPage from "../src/components/pages/main/MainPage";
+import type { NextPage } from 'next';
+import MainPage from '../src/components/pages/main/MainPage';
 
 const Main: NextPage = () => {
-  return (
-    <MainPage />
-  )
-}
+  return <MainPage />;
+};
 
-export default Main
+export default Main;

@@ -12,6 +12,6 @@ const Recoil: FC = () => {
       </div>
     </RecoilRoot>
   );
-}
+};
 
 export default Recoil;

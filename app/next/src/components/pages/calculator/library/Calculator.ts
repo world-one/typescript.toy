@@ -1,15 +1,15 @@
 import Stack from './Stack';
 import React from 'react';
 
-type ElTypes = HTMLElement | null;
+type ElTypes = HTMLInputElement | null;
 
 class Calculator extends React.Component {
   keypadEl: ElTypes;
   processEl: ElTypes;
   resultEl: ElTypes;
   onClickHandler: any;
-  inputValueArr = [];
-  inputTypeArr = [];
+  inputValueArr: (number | string)[] = [];
+  inputTypeArr: string[] = [];
   bracketStack: Stack;
 
   get TYPE(): Record<string, string> {
@@ -23,11 +23,21 @@ class Calculator extends React.Component {
     };
   }
 
-  constructor(props: any) {
+  constructor(props: {
+    targetElId: string;
+    processElId: string;
+    resultElId: string;
+  }) {
     super(props);
-    this.keypadEl = document.getElementById(props.targetElId);
-    this.processEl = document.getElementById(props.processElId);
-    this.resultEl = document.getElementById(props.resultElId);
+    this.keypadEl = document.getElementById(
+      props.targetElId
+    ) as HTMLInputElement;
+    this.processEl = document.getElementById(
+      props.processElId
+    ) as HTMLInputElement;
+    this.resultEl = document.getElementById(
+      props.resultElId
+    ) as HTMLInputElement;
     this.onClickHandler = this._onClickEvent();
     this.inputValueArr = [];
     this.inputTypeArr = [];
@@ -85,7 +95,7 @@ class Calculator extends React.Component {
           //
           this.pushValueArr(btnValue, btnType);
       },
-      clear: (btnValue) => {
+      clear: (btnValue: number) => {
         if (btnValue > 0) {
           //CE
           const value = this.inputValueArr.pop();
@@ -103,13 +113,14 @@ class Calculator extends React.Component {
         this.insertValueProcessEl();
       },
       calculation: () => {
-        if (this.getPrevType() === this.OP) {
+        if (!this.resultEl || !this.processEl) return;
+        if (this.getPrevType() === this.TYPE.OP) {
           //마지막 입력값이 연산자일때 삭제
           this.inputValueArr.pop();
         }
         if (this.bracketStack.store.length > 0) {
           //괄호가 덜 닫혔을 경우 자동으로 추가
-          this.bracketStack.store.forEach((el) => {
+          this.bracketStack.store.forEach(() => {
             this.inputValueArr.push(')');
           });
           this.bracketStack.reset();
@@ -121,7 +132,7 @@ class Calculator extends React.Component {
     };
   }
 
-  pushValueArr(btnValue, btnType) {
+  pushValueArr(btnValue: number | string, btnType: string) {
     //입력값 배열에 추가
     this.inputValueArr.push(btnValue);
     this.inputTypeArr.push(btnType);
@@ -129,11 +140,12 @@ class Calculator extends React.Component {
   }
 
   insertValueProcessEl() {
+    if (!this.processEl) return;
     //입력값 화면에 출력
     this.processEl.value = this.inputValueArr.join('');
   }
 
-  getPrevType(): any {
+  getPrevType(): string | boolean {
     //이전 입력 타입 확인
     const arrLen = this.inputTypeArr.length;
     if (arrLen === 0) return false;
@@ -172,7 +184,7 @@ class Calculator extends React.Component {
     return type;
   }
 
-  checkBracket(btnType) {
+  checkBracket(btnType: any) {
     //괄호 앞뒤 타입별 입력 제한
     const prevType = this.getPrevType();
     if (btnType === this.TYPE.CALCULATION || btnType === this.TYPE.CLEAR)

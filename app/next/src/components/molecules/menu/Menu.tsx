@@ -8,7 +8,7 @@ const Menu: FC = () => {
         <MenuItem />
       </ul>
     </nav>
-  )
-}
+  );
+};
 
 export default Menu;

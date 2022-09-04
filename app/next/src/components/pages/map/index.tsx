@@ -43,8 +43,8 @@ const Map: FC = () => {
   return (
     <ReactMapGL
       {...viewport}
-      mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
-      onViewportChange={(nextViewport: any) => setViewport(nextViewport)}
+      // mapboxApiAccessToken={'process.env.NEXT_PUBLIC_MAPBOX_TOKEN'}
+      // onViewportChange={(nextViewport: any) => setViewport(nextViewport)}
       onLoad={(e) => {
         setMap(e.target);
       }}

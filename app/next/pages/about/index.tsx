@@ -1,12 +1,8 @@
-import type { NextPage } from 'next'
-import globalStore from "../../src/stores/GlobalStore";
+import type { NextPage } from 'next';
+import globalStore from '../../src/stores/GlobalStore';
 
 const Main: NextPage = () => {
-  return (
-    <div>
-      {globalStore.num}
-    </div>
-  )
-}
+  return <div>{globalStore.num}</div>;
+};
 
-export default Main
+export default Main;

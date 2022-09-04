@@ -1,18 +1,15 @@
-class Stack{
-  store: any[] = []
+class Stack {
+  store: any[] = [];
 
-  constructor(){
-  }
-  reset(){
+  reset() {
     this.store = [];
   }
-  push(el: any){
+  push(el: any) {
     this.store.push(el);
   }
   pop() {
     return this.store.pop();
   }
-};
-
+}
 
 export default Stack;

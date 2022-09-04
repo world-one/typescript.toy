@@ -1,7 +1,7 @@
 import React from 'react';
 
 class DrawKeypad extends React.Component {
-  isDrew: boolean = false;
+  isDrew = false;
 
   constructor(props: any) {
     super(props);
