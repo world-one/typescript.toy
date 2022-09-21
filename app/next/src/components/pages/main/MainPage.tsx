@@ -15,12 +15,20 @@ import { useDebounce } from '../../../utils/debouncer';
 import globalStore from '../../../stores/GlobalStore';
 import { observer, Observer } from 'mobx-react-lite';
 import Link from 'next/link';
+import { useForm } from 'react-hook-form';
 
 const MainPage: FC = () => {
   const [value, setValue] = useState<any>();
   const [inputValue, setInputValue] = useState<string | null>(null);
 
   void useDebounce(inputValue, () => console.log('debounce'));
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
   return (
     <Container maxWidth="sm">
@@ -51,6 +59,22 @@ const MainPage: FC = () => {
         </LocalizationProvider>
         <Button variant={'contained'}>Go to the main page</Button>
       </Box>
+
+      <form onSubmit={handleSubmit((data) => console.log(data))}>
+        <div>
+          <Input defaultValue={'test1'} {...register(`test.0`)} />
+          <Input defaultValue={'test2'} {...register('test.1')} />
+          <Input defaultValue={'test3'} {...register('test.2')} />
+        </div>
+        <div>
+          <Input
+            defaultValue={'test111'}
+            {...register('testRequired', { required: true })}
+          />
+          {errors.testRequired && <p>필수입니다.</p>}
+        </div>
+        <Button type={'submit'}>입력</Button>
+      </form>
     </Container>
   );
 };

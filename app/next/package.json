@@ -25,6 +25,7 @@
     "react": "18.2.0",
     "react-datepicker": "4.8.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "7.36.0",
     "react-map-gl": "7.0.19",
     "recoil": "0.7.5",
     "styled-components": "5.3.5"
