@@ -22,11 +22,21 @@ const MainPage: FC = () => {
   const [inputValue, setInputValue] = useState<string | null>(null);
 
   void useDebounce(inputValue, () => console.log('debounce'));
+  if (typeof window !== 'undefined') {
+    console.log(window.Worker);
+    const w = new Worker('./worker.js');
 
+    w.postMessage(10);
+
+    w.onmessage = (e) => {
+      console.log(e);
+    };
+  }
   const {
     register,
     handleSubmit,
     watch,
+
     formState: { errors },
   } = useForm();
 
